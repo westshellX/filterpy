@@ -525,9 +525,9 @@ class KalmanFilter(object):
             R = eye(self.dim_z) * R
 
         if H is None:
-            z = reshape_z(z, self.dim_z, self.x.ndim)
             H = self.H
 
+        z = reshape_z(z, self.dim_z, self.x.ndim)
         # y = z - Hx
         # error (residual) between measurement and prediction
         self.y = z - dot(H, self.x)
@@ -983,7 +983,7 @@ class KalmanFilter(object):
                 means_p[i, :] = self.x
                 covariances_p[i, :, :] = self.P
 
-                self.update(z, R=R, H=H)
+                self.update(z, R=R,H=H)
                 means[i, :] = self.x
                 covariances[i, :, :] = self.P
 
